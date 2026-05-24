@@ -82,6 +82,25 @@ export default function ProductPage({ params }: Props) {
 
         <section className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)] lg:items-start">
           <div className="space-y-5">
+            <div className="lg:hidden">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-brand-700">
+                {product.brand}
+              </p>
+              <h1 className="mt-2 font-display text-2xl font-extrabold tracking-tight text-ink-950">
+                {product.name}
+              </h1>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-2.5 py-1 font-bold text-ink-800">
+                  <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                  {product.rating.toFixed(1)} ({product.reviews} avaliacoes)
+                </span>
+                <span className="inline-flex items-center gap-1.5 font-bold text-aux-700">
+                  <span className="h-2 w-2 rounded-full bg-aux-500" />
+                  {Math.max(12, Math.round(product.reviews / 140))} em estoque
+                </span>
+              </div>
+            </div>
+
             <div className="relative aspect-square overflow-hidden rounded-3xl bg-ink-50 shadow-lift ring-1 ring-ink-100">
               {product.image ? (
                 <Image
@@ -126,6 +145,10 @@ export default function ProductPage({ params }: Props) {
               </div>
             </div>
 
+            <div className="lg:hidden">
+              <ProductBuyPanel product={product} />
+            </div>
+
             <section className="rounded-2xl border border-ink-100 bg-white p-5 shadow-card">
               <h2 className="text-lg font-black text-ink-950">Sobre o produto</h2>
               <p className="mt-3 text-sm leading-6 text-ink-600">
@@ -145,7 +168,7 @@ export default function ProductPage({ params }: Props) {
             </section>
           </div>
 
-          <aside className="lg:sticky lg:top-36">
+          <aside className="hidden lg:sticky lg:top-36 lg:block">
             <p className="text-[11px] font-black uppercase tracking-[0.18em] text-brand-700">
               {product.brand}
             </p>
