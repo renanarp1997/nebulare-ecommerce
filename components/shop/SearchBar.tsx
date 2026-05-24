@@ -147,7 +147,7 @@ export default function SearchBar() {
   const hasResults = productHits.length > 0 || tagHits.length > 0;
 
   return (
-    <div ref={wrapperRef} className="relative flex-1">
+    <div ref={wrapperRef} className="relative min-w-0 flex-1">
       <form onSubmit={onSubmit}>
         <div
           className={`flex h-11 rounded-2xl bg-ink-50 ring-1 ring-ink-200 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-brand-500 ${open ? "bg-white ring-2 ring-brand-500" : ""}`}
@@ -167,7 +167,7 @@ export default function SearchBar() {
             }}
             onFocus={() => setOpen(true)}
             onKeyDown={onKeyDown}
-            placeholder="Buscar LED, skincare, hoodie, plushie..."
+            placeholder="Buscar LED, skincare, hoodie..."
             className="min-w-0 flex-1 bg-transparent px-3 text-sm text-ink-950 placeholder:text-ink-400 focus:outline-none"
             aria-label="Buscar produtos"
             aria-autocomplete="list"
@@ -190,7 +190,7 @@ export default function SearchBar() {
           <button
             type="submit"
             aria-label="Buscar"
-            className="m-1 flex items-center gap-1.5 rounded-xl bg-ink-950 px-4 text-xs font-bold text-white transition-colors hover:bg-brand-800 sm:px-5"
+            className="m-1 flex h-9 w-9 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-ink-950 p-0 text-xs font-bold text-white transition-colors hover:bg-brand-800 sm:w-auto sm:px-5"
           >
             <Search className="h-4 w-4" />
             <span className="hidden sm:inline">Buscar</span>

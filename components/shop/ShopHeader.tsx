@@ -106,9 +106,10 @@ export default function ShopHeader() {
           scrolled ? "shadow-card" : ""
         }`}
       >
-        <div className="mx-auto flex max-w-shell items-center gap-2 px-3 py-3 sm:gap-4 sm:px-6 lg:gap-6">
+        <div className="mx-auto flex max-w-shell flex-wrap items-center gap-2 px-3 py-2.5 sm:flex-nowrap sm:gap-4 sm:px-6 sm:py-3 lg:gap-6">
           <a href="/" className="shrink-0" aria-label="Nebulari">
-            <Logo size="md" />
+            <Logo size="sm" className="sm:hidden" />
+            <Logo size="md" className="hidden sm:inline-flex" />
           </a>
 
           {/* Departamentos — abre mega menu */}
@@ -129,10 +130,12 @@ export default function ShopHeader() {
           </button>
 
           {/* Search */}
-          <SearchBar />
+          <div className="order-last w-full min-w-0 sm:order-none sm:flex-1">
+            <SearchBar />
+          </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-1">
+          <div className="ml-auto flex items-center gap-1">
             <a
               href="/entrar"
               className="hidden items-center gap-2 rounded-xl px-2.5 py-2 text-left text-xs transition-colors hover:bg-ink-50 lg:flex"
@@ -159,7 +162,7 @@ export default function ShopHeader() {
             <a
               href="/favoritos"
               aria-label="Favoritos"
-              className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-ink-700 transition-colors hover:bg-ink-50"
+              className="relative hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl text-ink-700 transition-colors hover:bg-ink-50 sm:flex"
             >
               <Heart className={`h-5 w-5 ${favHydrated && favCount > 0 ? "fill-pink-500 text-pink-500" : ""}`} />
               {favHydrated && favCount > 0 && (
@@ -172,11 +175,11 @@ export default function ShopHeader() {
             <button
               aria-label="Carrinho"
               onClick={() => setCartOpen(true)}
-              className="relative flex shrink-0 items-center gap-1.5 rounded-full bg-ink-950 px-2.5 py-2 text-xs font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-glow sm:gap-2 sm:px-3.5 sm:py-2.5"
+              className="relative flex h-10 w-10 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-ink-950 p-0 text-xs font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-glow sm:w-auto sm:rounded-full sm:px-3.5 sm:py-2.5"
             >
               <ShoppingBag className="h-4 w-4" />
               <span className="hidden md:inline">Carrinho</span>
-              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[9px] font-bold text-ink-950">
+              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[9px] font-bold text-ink-950 ring-2 ring-ink-950 sm:static sm:ring-0">
                 {cartHydrated ? cartCount : 0}
               </span>
             </button>

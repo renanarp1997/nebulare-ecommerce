@@ -18,6 +18,7 @@ html {
 body {
   color: rgb(var(--foreground));
   background: rgb(var(--background));
+  overflow-x: hidden;
   font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1, "cv11" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
