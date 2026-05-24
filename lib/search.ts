@@ -39,6 +39,10 @@ export const ALL_PRODUCTS: Product[] = ALL_RAW.filter((p) => {
   return true;
 });
 
+export function findProductById(id: string): Product | undefined {
+  return ALL_PRODUCTS.find((product) => product.id === id);
+}
+
 const DIACRITICS = /[̀-ͯ]/g;
 const normalize = (s: string) =>
   s.toLowerCase().normalize("NFD").replace(DIACRITICS, "").trim();

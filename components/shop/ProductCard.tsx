@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Heart, ShoppingBag, Star, Truck } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Badge, Product } from "@/lib/store-data";
@@ -55,6 +56,12 @@ export default function ProductCard({ product }: { product: Product }) {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink-100 transition-all duration-300 hover:-translate-y-1 hover:ring-brand-200/80 hover:shadow-lift"
     >
+      <Link
+        href={`/produto/${product.id}`}
+        aria-label={`Ver detalhes de ${product.name}`}
+        className="absolute inset-0 z-[1]"
+      />
+
       {/* Media */}
       <div className="relative aspect-square w-full overflow-hidden">
         {showImage ? (

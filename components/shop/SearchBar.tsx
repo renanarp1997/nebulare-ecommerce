@@ -88,7 +88,7 @@ export default function SearchBar() {
       ...productHits.map((h) => ({
         type: "product" as const,
         id: h.product.id,
-        href: `/busca?q=${encodeURIComponent(h.product.name)}`,
+        href: `/produto/${h.product.id}`,
       })),
       ...tagHits.map((t) => ({
         type: "tag" as const,
@@ -274,9 +274,7 @@ export default function SearchBar() {
                               onClick={() => {
                                 pushRecent(h.product.name);
                                 setOpen(false);
-                                router.push(
-                                  `/busca?q=${encodeURIComponent(h.product.name)}`,
-                                );
+                                router.push(`/produto/${h.product.id}`);
                               }}
                               className={`flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left transition-colors ${isActive ? "bg-ink-50" : "hover:bg-ink-50"}`}
                             >
