@@ -207,10 +207,14 @@ export default function SideCart({ open, onClose }: Props) {
                   O cálculo de frete será feito no checkout.
                 </p>
 
-                <button className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-aux-500 to-aux-600 px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-glow transition-all hover:-translate-y-0.5 hover:from-aux-600 hover:to-aux-700">
+                <Link
+                  href="/checkout"
+                  onClick={onClose}
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-aux-500 to-aux-600 px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-glow transition-all hover:-translate-y-0.5 hover:from-aux-600 hover:to-aux-700"
+                >
                   Finalizar compra
                   <ArrowRight className="h-4 w-4" />
-                </button>
+                </Link>
 
                 <div className="mt-2.5 flex items-center justify-between gap-2">
                   <button
