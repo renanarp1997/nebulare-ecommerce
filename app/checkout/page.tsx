@@ -112,16 +112,33 @@ type PaymentMethod = "pix" | "credit" | "boleto";
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, hydrated, clear } = useCart();
+  const [buyNow, setBuyNow] = useState<{ id: string; qty: number } | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("buy");
+    if (!id) return;
+    const qty = Math.max(
+      1,
+      Math.min(9, Number.parseInt(params.get("qty") ?? "1", 10) || 1),
+    );
+    setBuyNow({ id, qty });
+  }, []);
 
   const lineItems = useMemo<{ product: Product; qty: number }[]>(() => {
     const byId = new Map(ALL_PRODUCTS.map((p) => [p.id, p]));
-    return items
+    const cartItems = items
       .map((i: CartItem) => {
         const product = byId.get(i.id);
         return product ? { product, qty: i.qty } : null;
       })
       .filter((x): x is { product: Product; qty: number } => !!x);
-  }, [items]);
+
+    if (cartItems.length > 0 || !buyNow) return cartItems;
+
+    const product = byId.get(buyNow.id);
+    return product ? [{ product, qty: buyNow.qty }] : [];
+  }, [buyNow, items]);
 
   const subtotal = useMemo(
     () => lineItems.reduce((s, l) => s + l.product.price * l.qty, 0),

@@ -34,7 +34,7 @@ export default function ProductBuyPanel({ product }: Props) {
 
   function buyNow() {
     addToCart(false);
-    router.push("/checkout");
+    router.push(`/checkout?buy=${encodeURIComponent(product.id)}&qty=${qty}`);
   }
 
   return (
